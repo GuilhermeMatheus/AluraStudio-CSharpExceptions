@@ -10,27 +10,64 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
-            TentaFazerDivisao();
+            int resultado = Metodo();
 
-            Console.WriteLine("Fim da aplicação. Tecle enter para sair");
+            if(resultado == -681)
+            {
+                Console.WriteLine("Tentativa de divisão de divisor maior que o numero");
+            }
+
+            Console.WriteLine("Execução finalizada. Tecle enter para sair");
             Console.ReadLine();
         }
 
-        private static void TentaFazerDivisao()
+        private static int Metodo()
         {
-            FazerDivisao();
+            int resultado1 = TestaDivisao(0);
+            int resultado2 = TestaDivisao(20);
+
+            if(resultado2 == -681)
+            {
+                return -681;
+            }
+
+            return 0;
         }
 
-        private static void FazerDivisao()
+        private static int TestaDivisao(int divisor)
         {
-            int resultado = Dividir(12, 0);
-            Console.WriteLine("Fim do FazerDivisao");
+            int resultado = Dividir(10, divisor);
+
+            if(resultado == -1)
+            {
+                Console.WriteLine("Tentativa de divisão por zero!");
+            }
+
+            if(resultado == -681)
+            {
+                return -681;
+            }
+
+            return 0;
         }
 
         private static int Dividir(int numero, int divisor)
         {
+            if(divisor == 0)
+            {
+                return -1;
+            }
+
+            if(divisor > numero)
+            {
+                return -681;
+            }
+            
             return numero / divisor;
         }
+
+        // numero = 1
+        // divisor = 2;
 
     }
 }
