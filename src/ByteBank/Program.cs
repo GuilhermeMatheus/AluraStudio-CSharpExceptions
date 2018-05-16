@@ -40,17 +40,43 @@ namespace ByteBank
             {
                 Dividir(10, divisor);
             }
-            catch(DivideByZeroException ex)
+            catch (NullReferenceException ex)
             {
+                Console.WriteLine("Fui capturado pelo (NullReferenceException ex)");
                 Console.WriteLine(ex.StackTrace);
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fui capturado pelo (Exception ex)");
+                Console.WriteLine(ex.StackTrace);
+            }
+            
+            //catch(DivideByZeroException ex)
+            //{
+            //    Console.WriteLine(ex.StackTrace);
+            //}
+
             Console.WriteLine("Estou executando normalmente!");
 
         }
 
         private static int Dividir(int numero, int divisor)
         {
-            return numero / divisor;
+            try
+            {
+                Console.WriteLine("Fazendo o cálculo " + numero + " / " + divisor);
+                int resultado = numero / divisor;
+                Console.WriteLine("O resultado é " + resultado);
+                return resultado;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Erro no cálculo: " + ex.Message);
+                throw; // Lançar exceção
+
+                Console.WriteLine("Depois do throw");
+
+            }
         }
 
         // numero = 1
